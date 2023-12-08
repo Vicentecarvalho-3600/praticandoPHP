@@ -7,7 +7,8 @@ require '../../../bootstrap.php';
 if(isEmpty()){
     flash('message', 'Preencha todos os campos',);
 
-    header('location: /php-quem-entende/public/?page=contato');
+    return redirect('contato');
+
 
 }
 
@@ -18,7 +19,18 @@ $validate = validate([
     'message' => 's'
 ]);
 
-dd($validate->name);
+$data = [
+    'quem'=> $validate->email,
+    'para'=> 'tedvicenteps4@gmail.com',
+    'message'=> $validate->message,
+    'assunto'=> $validate->subjact
+
+];
+
+if(send($data)){
+    flash('message', 'Email enviado com sucesso', 'success');
+    return redirect('contato');
+}
 
 
 

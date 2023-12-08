@@ -17,3 +17,11 @@ function request(){
 
     return $_GET;
 }
+
+function redirect($target){
+    return header("location: /php-quem-entende/public/?page={$target}");
+}
+
+function redirectToHome(){
+    return header("location: /php-quem-entende/public");
+}
